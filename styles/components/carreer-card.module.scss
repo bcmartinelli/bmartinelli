@@ -1,0 +1,44 @@
+@import '../_colors';
+
+
+.carreerCard {
+    display: flex;
+    position: relative;
+    border-left: 2px solid $lightBlue;
+    padding-left: 35px;
+    padding-bottom: 50px;
+
+    &::before {
+        width: 12px;
+        height: 12px;
+        border: 2px solid $lightBlue;
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        background-color: $white;
+        left: -0.51rem;
+        box-shadow: 2px 2px 1px 0px rgba(1, 92, 167, 0.2);
+    }
+
+    .occupation {
+        margin: -7px 0 5px;
+        color: $textPrimary;
+    }
+
+    .companieName {
+        color: $textSecondary;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .timeWork {
+        color: $textTertiary;
+        font-size: 0.8rem;
+    }
+
+    .detailOccupation {
+        margin: 0.8rem 0 0;
+        font-size: 0.9rem;
+        max-width: 800px;
+    }
+}

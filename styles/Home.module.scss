@@ -1,39 +1,261 @@
+@import './_colors';
+
+.default {
+  padding: 2rem 0;
+  width: 90%;
+  max-width: 1200px;
+}
+
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  .main {
-    padding: 5rem 0;
-    flex: 1;
+  header {
+    width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-  
-    .title {
-      color: #0070f3;
-      text-decoration: none;
-      margin: 0;
-      line-height: 1.15;
-      font-size: 4rem;
-      text-align: center;
+
+    .headerContainer {
+      @extend .default;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 0;
+      color: $textSecondary;
+
+      .title {
+        margin: 0;
+        font-size: 2rem;
+      }
     }
+  }
+
+  .main {
+    width: 100%;
+    padding: 5rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: $lightBlue;
+
+    img {
+      max-height: 200px;
+      border-radius: 50%;
+      margin-right: 2rem;
+      box-shadow: 10px 20px 25px 0px rgba(2, 95, 172, 1);
+    }
+
+    .descriptionContainer {
+      color: $white;
+
+      p {
+        margin: 0;
+        font-size: 30px;
+        font-weight: bold;
+        text-shadow: 10px 20px 25px rgba(2, 95, 172, 1);
+
+        .occupation {
+          display: block;
+          font-size: 50px;
+        }
+      }
+    }    
+  }
+
+  section {
+    .sectionContainer {
+      @extend .default;
+
+      .titleSection {
+        display: block;
+        font-size: 33px;
+        font-weight: bold;
+        color: $textPrimary;
+        margin: 0;
+      }
+
+      .subtitleSection {
+        color: $textSecondary;
+        font-size: 16px;
+        font-weight: bold;
+        font-style: italic;
+        margin-bottom: 2rem;
+      }
+    }
+
+    &.resume {
+    }
+
+    &.skills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $bgPrimary;
+      width: 100%;
+
+      .sectionContainer {
+        .skillsCardContainer {
+          display: flex;
+          flex-wrap: wrap;
+          margin: -1rem 0 0 -1rem;
+          width: calc(100% + 2rem);
+  
+          .skillContainer {
+            width: 25%;
+            padding: 1rem;
+            
+            img { height: 2rem; }
+            .nameSkill {
+              display: block;
+              font-size: 18px;
+              text-align: center;
+              margin-bottom: 5px;
+              font-weight: bold;
+              color: $bgSecondary
+            }
+    
+            .progressbarContainer {
+              position: relative;
+              width: 100%;
+              height: 30px;
+              border: 1px solid $lightGray;
+              border-radius: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+              .progressbarComplete {
+                position: absolute;
+                left: 0;
+                top: 0px;
+                height: 100%;
+                border-radius: 10px;
+                z-index: 2;
+                .progressbarLiquid {
+                  z-index: 1;
+                  width: 50px;
+                  height: 50px;
+                  position: absolute;
+                  right: -5px;
+                  top: -10px;
+                  border-radius: 40%;
+                }
+              }
+              .progress {
+                z-index: 2;
+                color: $white;
+                font-weight: bold;
+                text-shadow: 2px 2px rgba(68,73,87,0.3);
+              }
+    
+              &.initial .progressbarComplete { animation: gInitial 2500ms infinite ease-in-out; }
+              &.initial .progressbarComplete .progressbarLiquid { animation: gInitial 2500ms infinite ease-in-out, r 3000ms infinite cubic-bezier(0.5, 0.5, 0.5, 0.5); }
+              
+              &.medium .progressbarComplete { animation: gMedium 2500ms infinite ease-in-out; }
+              &.medium .progressbarComplete .progressbarLiquid { animation: gMedium 2500ms infinite ease-in-out, r 3000ms infinite cubic-bezier(0.5, 0.5, 0.5, 0.5); }
+            
+              &.high .progressbarComplete { animation: gHigh 2500ms infinite ease-in-out; }
+              &.high .progressbarComplete .progressbarLiquid { animation: gHigh 2500ms infinite ease-in-out, r 3000ms infinite cubic-bezier(0.5, 0.5, 0.5, 0.5); }
+            
+            }
+          }
+        }
+      }
+    }
+
+    &.carreer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  .social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 0;
+    background: $bgSecondary;
+    color: $white;
   }
   
   .footer {
     width: 100%;
     height: 100px;
-    border-top: 1px solid #eaeaea;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: $bgFooter;
+    color: $white;
   }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 700px) {
+  .container {
+    .main {
+      flex-direction: column;
+      img { margin: 0 0 2rem; }
 
+      .descriptionContainer {
+        text-align: center;
+      }
+
+    }
+    section {
+      &.skills {
+        .sectionContainer {
+          .skillsCardContainer {
+            .skillContainer { width: 50%; }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    section {
+      &.skills {
+        .sectionContainer {
+          .skillsCardContainer {
+            .skillContainer { width: 100%; }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes gInitial {
+  0% { background-color: #ac3709; }
+  50% { background-color: #d84012; }
+  100% { background-color: #ac3709; }
+}
+
+@keyframes gMedium {
+  0% { background-color: #ac9c09; }
+  50% { background-color: #d8c412; }
+  100% { background-color: #ac9c09; }
+}
+
+@keyframes gHigh {
+  0% { background-color: #09ac1f; }
+  50% { background-color: #12d82c; }
+  100% { background-color: #09ac1f; }
+}
+
+@keyframes r {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
 }
